@@ -39,15 +39,11 @@ function checkExcangiabilityOnClick() {
         const isAssembled = isPuzzleAssembled(Array.from(boxes.getElementsByClassName('box')));
         
 
-        if(isAssembled) {
-            activateAssembleButton();
-        } else {
-            disactivateAssembleButton();
-        }
-        // .reduce(box => {
-        //     console.log('Box: ' + box.children);
-        //     return box.getAttribute('id');
-        // })));
+        // if(isAssembled) {
+        //     activateAssembleButton();
+        // } else {
+        //     disactivateAssembleButton();
+        // }
         
     } else {
         console.log('Number of boxes ready for exchnage:' + availableForExchange.length);
@@ -139,6 +135,7 @@ function createBoxes1(array, imgUrl) {
     console.log(array);
     boxes.classList.add('big');
     Array.from(array).forEach(element => createBox(element, imgUrl));
+    Array.from(boxes.getElementsByClassName('box')).forEach(box => box.addEventListener('click', checkExcangiabilityOnClick));
 }
 
 function assemblePuzzle() {
@@ -169,7 +166,7 @@ function loadRandomPicture() {
 
 function resetAndLoadNewPuzzle() {
     //hide back Magic assemble button
-    disactivateAssembleButton();
+    //disactivateAssembleButton();
     //clears previously generated tiles
     boxes.innerHTML = '';
     //generate new random array of boxes
@@ -186,8 +183,19 @@ function initNextButton() {
     nextBtn.addEventListener('click', resetAndLoadNewPuzzle);
 }
 
+function initSmallPicture(picture) {
+    const imageDiv = document.querySelector('.img-container-small');
+    console.log(picture);
+    imageDiv.style.backgroundImage = picture;
+    imageDiv.style.backgroundSize = 'contain'; 
+    imageDiv.style.backgroundRepeat = 'no-repeat'; 
+    console.log(imageDiv);
+}
+
 //createBoxes();
 initMagicButton();
 initNextButton();
-createBoxes1(generateRandomBoxesSequense(16), loadRandomPicture());
-Array.from(boxes.getElementsByClassName('box')).forEach(box => box.addEventListener('click', checkExcangiabilityOnClick));
+activateAssembleButton();
+const starterPicture = loadRandomPicture();
+initSmallPicture(starterPicture);
+createBoxes1(generateRandomBoxesSequense(16), starterPicture);

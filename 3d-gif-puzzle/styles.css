@@ -97,6 +97,7 @@ body {
     border-radius: 3px;
     font-size: 16px;
     padding: 12px 20px;
+    margin: 30px;
     cursor: pointer;
     letter-spacing: 1px;
     box-shadow: 0 3px rgba(249, 202, 36, 0.5);
@@ -183,4 +184,9 @@ body {
     padding: 12px 20px;
     box-shadow: 0 3px rgba(249, 202, 36, 0.5);
     margin: 30px;
+}
+
+.img-container-small {
+    height: 200px;
+    width: 200px;
 }
